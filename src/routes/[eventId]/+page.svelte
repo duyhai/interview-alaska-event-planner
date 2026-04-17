@@ -13,6 +13,7 @@
         <h2 class="text-lg font-bold">{event.id}: {event.title}</h2>
         <p>{event.description}</p>
         <p>{event.date}</p>
+        <a class="btn" href="/" role="button">Home</a>
     {/if}
 {:catch error}
     <p>Error loading event: {error.message}</p>

@@ -14,6 +14,7 @@
 {#each events as event}
     <div>
         <h2 class="text-lg font-bold">{event.id}: {event.title}</h2>
+        <a class="btn" href="/{event.id}" role="button">Manage Event</a>
         <p>{event.description}</p>
         <p>{event.date}</p>
     </div>
@@ -23,3 +24,4 @@
 {/await}
 
 <a class="btn" href="/newevent" role="button">Add Event</a>
+<a class="btn" href="/" role="button">Home</a>
