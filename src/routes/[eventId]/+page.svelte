@@ -1,7 +1,10 @@
 <script lang="ts">
 	import type { PageData } from "./$types";
+	import { enhance } from '$app/forms';
 
+    let loading = $state(false);
     let {data}: {data: PageData} = $props();
+    $inspect(data);
 </script>
 
 
@@ -13,7 +16,25 @@
         <h2 class="text-lg font-bold">{event.id}: {event.title}</h2>
         <p>{event.description}</p>
         <p>{event.date}</p>
-        <a class="btn" href="/" role="button">Home</a>
+        <form method="POST" action="?/delete" use:enhance={
+            () => {
+                loading = true;
+                return async ({ update }) => {
+                    await update();
+                    loading = false;
+                };
+            }
+        }>
+            <input type="hidden" name="id" value={event.id} />
+            <button type="submit" disabled={loading}>
+            {#if loading}
+                Loading...
+            {:else}
+                Delete Event
+            {/if}
+            </button>
+            <a class="btn" href="/" role="button">Home</a>
+        </form>
     {/if}
 {:catch error}
     <p>Error loading event: {error.message}</p>
