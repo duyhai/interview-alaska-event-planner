@@ -25,4 +25,5 @@
         Create Event
     {/if}
     </button>
+<a class="btn" href="/" role="button">Home</a>
 </form>

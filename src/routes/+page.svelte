@@ -24,4 +24,3 @@
 {/await}
 
 <a class="btn" href="/newevent" role="button">Add Event</a>
-<a class="btn" href="/" role="button">Home</a>
