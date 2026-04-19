@@ -33,6 +33,7 @@
                 Delete Event
             {/if}
             </button>
+            <a class="btn" href="/{event.id}/edit" role="button">Edit Event</a>
             <a class="btn" href="/" role="button">Home</a>
         </form>
     {/if}
