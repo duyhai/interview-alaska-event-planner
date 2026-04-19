@@ -3,7 +3,7 @@ import type { Actions } from "./$types";
 import { error, redirect } from "@sveltejs/kit";
 
 export const actions: Actions = {
-    default: async ({request}) => {
+    createEvent: async ({request}) => {
         const formdata = await request.formData();
         const title = formdata.get('title')?.toString();
         const description = formdata.get('description')?.toString();
