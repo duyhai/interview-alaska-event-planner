@@ -7,10 +7,24 @@
 	export let event: Partial<Event> | undefined = undefined;
 
 	let loading = false;
+	let errorMessage = '';
 </script>
 
 <form method="POST" {action} use:enhance={
-	async () => {
+	async ({ cancel, formData }) => {
+		errorMessage = '';
+		const dateStr = formData.get('date')?.toString();
+		
+		if (dateStr) {
+			const selectedDate = new Date(dateStr);
+			const now = new Date();
+			if (selectedDate.getTime() < now.getTime()) {
+				errorMessage = 'Event date cannot be in the past.';
+				cancel();
+				return;
+			}
+		}
+
 		loading = true;
 		return async ({ update }) => {
 			await update();
@@ -18,6 +32,10 @@
 		};
 	}
 }>
+	{#if errorMessage}
+		<p class="error" style="color: red;">{errorMessage}</p>
+	{/if}
+
 	<label for="title">Title</label>
 	<input type="text" id="title" name="title" value={event?.title ?? ''} required>
 
