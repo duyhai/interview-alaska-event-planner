@@ -31,26 +31,34 @@
 			loading = false;
 		};
 	}
-}>
+} class="flex flex-col gap-4">
 	{#if errorMessage}
-		<p class="error" style="color: red;">{errorMessage}</p>
+		<p class="p-3 bg-red-100 text-red-700 rounded-md border border-red-200">{errorMessage}</p>
 	{/if}
 
-	<label for="title">Title</label>
-	<input type="text" id="title" name="title" value={event?.title ?? ''} required>
+	<div class="flex flex-col">
+		<label class="font-semibold mb-1 text-gray-700" for="title">Title</label>
+		<input class="p-2 border rounded-md" type="text" id="title" name="title" value={event?.title ?? ''} required>
+	</div>
 
-	<label for="description">Description</label>
-	<textarea id="description" name="description" rows="4" cols="50" placeholder="Description" value={event?.description ?? ''}></textarea>
+	<div class="flex flex-col">
+		<label class="font-semibold mb-1 text-gray-700" for="description">Description</label>
+		<textarea class="p-2 border rounded-md min-h-[100px]" id="description" name="description" rows="4" placeholder="Description" value={event?.description ?? ''}></textarea>
+	</div>
 
-	<label for="date">Date</label>
-	<input type="datetime-local" id="date" name="date" value={event?.date ?? ''} required>
+	<div class="flex flex-col mb-4">
+		<label class="font-semibold mb-1 text-gray-700" for="date">Date</label>
+		<input class="p-2 border rounded-md" type="datetime-local" id="date" name="date" value={event?.date ?? ''} required>
+	</div>
 
-	<button type="submit" disabled={loading}>
-	{#if loading}
-		Loading...
-	{:else}
-		{buttonLabel}
-	{/if}
-	</button>
-	<a class="btn" href="/" role="button">Home</a>
+	<div class="flex items-center gap-3">
+		<a class="btn btn-sm btn-outline bg-gray-300 text-black" href="/" role="button">Back</a>
+		<button class="btn btn-sm btn-primary bg-blue-300" type="submit" disabled={loading}>
+		{#if loading}
+			Loading...
+		{:else}
+			{buttonLabel}
+		{/if}
+		</button>
+	</div>
 </form>
